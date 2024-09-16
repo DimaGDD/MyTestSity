@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+from register_login import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', include('register_login.urls'))
+    path('', include('register_login.urls')),
+    path('homepage/', include('main_page.urls')),
+
+    path('', lambda request: redirect('home_page', permanent=True)),
+
+    path('login/', auth_views.sign_in, name='login'),
+    path('logout/', auth_views.user_logout, name='logout'),
 ]
