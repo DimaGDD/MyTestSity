@@ -12,6 +12,22 @@ body, html {
     overflow: hidden;
 }
 
+.errorlist {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.form-container label {
+    font-size: 1.2rem;
+    color: #00ffff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
 /* Эффект неоновой ауры */
 .form-container {
     background: rgba(0, 0, 0, 0.85);

@@ -11,13 +11,25 @@
 <body>
 
     <div class="form-container">
-        <h1>Регистрация</h1>
 
-        <form method="POST" autocomplete="off">
+        <form method="POST" autocomplete="off" novalidate>
             {% csrf_token %}
 
-            {{ registerform.non_field_errors }}
-            {{ registerform.as_p }}
+            <h2>Sign up</h2>
+
+            <h4>{{ form.username.label }}</h4>
+            {{ form.username }}
+
+            <h4>{{ form.email.label }}</h4>
+            {{ form.email }}
+
+            <h4>{{ form.password1.label }}</h4>
+            {{ form.password1 }}
+
+            <h4>{{ form.password2.label }}</h4>
+            {{ form.password2 }}
+
+            {{ form.errors }}
 
             <input type="submit" value="Регистрация">
         </form>

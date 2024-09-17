@@ -31,10 +31,7 @@ def sign_up(request):
 
 			return redirect('home_page')
 
-	context = { 'registerform' : form }
-
-
-	return render(request, 'register_login/register.html', context=context)
+	return render(request, 'register_login/register.html', {'form' : form})
 
 
 def sign_in(request):
