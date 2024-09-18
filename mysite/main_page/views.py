@@ -7,5 +7,4 @@ from django.contrib.auth.decorators import login_required
 
 # @login_required(login_url='sign_in')
 def home_page(request):
-	context = {'username': request.user.username}
-	return render(request, 'main_page/index.html', context)
+	return render(request, 'main_page/index.html', {'username' : request.user.username})

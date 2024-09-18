@@ -6,12 +6,19 @@
 	<title></title>
 </head>
 <body>
-	<h1> Login here! </h1>
 
 	<form method="POST" autocomplete="off">
-		
 		{% csrf_token %}
-		{{ loginform.as_p }}
+
+		<h2> Login here! </h2>
+
+		<h4>{{ form.username.label }}</h4>
+		{{ form.username }}
+		<div class="error-message">{{ form.errors.username }}</div>
+
+		<h4>{{ form.password.label }}</h4>
+		{{ form.password }}
+		<div class="error-message">{{ form.errors.password }}</div>
 
 		<input type="submit" value="Login">
 	</form>

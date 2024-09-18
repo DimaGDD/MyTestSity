@@ -25,7 +25,7 @@ def sign_up(request):
 
 			messages.success(request, 'Аккаунт создан успешно!')
 
-			user = authenticate(request, username=user.username, password=password)
+			user = authenticate(request, email=user.email, password=password)
 			if user is not None:
 				login(request, user)
 
@@ -42,23 +42,23 @@ def sign_in(request):
 	form = LoginForm()
 
 	if request.method == 'POST':
-		form = LoginForm(request, data=request.POST)
+		form = LoginForm(data=request.POST)
 
 		if form.is_valid():
 
-			username = request.POST.get('username')
-			password = request.POST.get('password')
+			email = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
 
-			user = authenticate(request, username=username, password=password)
+			print(email, password)
+
+			user = authenticate(request, email=email, password=password)
 
 			if user is not None:
 				login(request, user)
 
 				return redirect('home_page')
 
-	context = { 'loginform' : form }
-
-	return render(request, 'register_login/login.html', context=context)
+	return render(request, 'register_login/login.html', {'form' : form})
 
 @login_required
 def user_logout(request):
