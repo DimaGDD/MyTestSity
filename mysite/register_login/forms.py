@@ -15,10 +15,33 @@ class CreateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].error_messages = {
+            'required': "Обязательное поле для заполнения!",
+            'max_length': "Имя слишком длинное!",
+        }
+        self.fields['email'].error_messages = {
+            'required': "Введите адрес электронной почты.",
+            'invalid': "Введите корректный адрес электронной почты.",
+            'unique': "Пользователь с таким адресом электронной почты уже существует.",
+        }
+        self.fields['password1'].error_messages = {
+            'required': "Пароль обязателен!",
+            'min_length': "Пароль слишком короткий!",
+        }
+        self.fields['password2'].error_messages = {
+            'required': "Подтверждение пароля обязательно!",
+            'invalid': "Пароли не совпадают!",
+        }
+
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
+
         if Gamers.objects.filter(email=email).exists():
-            raise forms.ValidationError(self.error_messages['email_exists'])
+            raise forms.ValidationError('This email is already taken!')
         return email
 
 

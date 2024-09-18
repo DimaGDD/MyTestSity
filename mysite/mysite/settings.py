@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'register_login.middleware.RestrictAdminAccessMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'

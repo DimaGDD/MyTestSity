@@ -23,8 +23,6 @@ def sign_up(request):
 			user.set_password(password)
 			user.save()
 
-			messages.success(request, 'Аккаунт создан успешно!')
-
 			user = authenticate(request, email=user.email, password=password)
 			if user is not None:
 				login(request, user)
@@ -48,8 +46,6 @@ def sign_in(request):
 
 			email = form.cleaned_data.get('username')
 			password = form.cleaned_data.get('password')
-
-			print(email, password)
 
 			user = authenticate(request, email=email, password=password)
 

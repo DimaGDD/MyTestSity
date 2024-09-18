@@ -5,7 +5,7 @@ from django.utils.crypto import get_random_string
 
 
 class CustomUserManager(BaseUserManager):
-	def create_user(self, email, username, password):
+	def create_user(self, email=None, username=None, password=None):
 		if not email:
 			raise ValueError('The Email field must be set!')
 		elif not username:
