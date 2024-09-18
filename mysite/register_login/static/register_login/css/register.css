@@ -12,22 +12,6 @@ body, html {
     overflow: hidden;
 }
 
-.errorlist {
-    color: red;
-    font-size: 0.8rem;
-    margin-top: 5px;
-    padding-left: 0;
-    list-style-type: none;
-}
-
-.form-container label {
-    font-size: 1.2rem;
-    color: #00ffff;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
 /* Эффект неоновой ауры */
 .form-container {
     background: rgba(0, 0, 0, 0.85);
@@ -40,25 +24,44 @@ body, html {
     border: 2px solid rgba(0, 255, 255, 0.4);
 }
 
-.form-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+.form-container h4 {
+    font-size: 0.7rem;
+    margin-bottom: 1px;
     color: #00ffff;
     letter-spacing: 4px;
     text-transform: uppercase;
 }
 
+/* Убираем маркеры перед ошибками */
+ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стили для элементов ошибок */
+ul.errorlist li {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.form-container h2 {
+}
+
 .form-container form input[type="text"],
 .form-container form input[type="email"],
 .form-container form input[type="password"] {
-    width: 100%;
-    padding: 12px;
+    width: 90%;
+    height: 2px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 15px;
     margin: 15px 0;
     background-color: #111;
     border: 2px solid #00ffff;
     border-radius: 5px;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1rem;
     outline: none;
     transition: 0.3s ease;
 }
@@ -85,6 +88,10 @@ body, html {
 
 .form-container form input[type="submit"]:hover {
     background-color: #ff00ff;
+}
+
+.form-container input {
+    margin-top: 20px;
 }
 
 .form-container p {
