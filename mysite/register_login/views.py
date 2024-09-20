@@ -56,6 +56,7 @@ def sign_in(request):
 
 	return render(request, 'register_login/login.html', {'form' : form})
 
+
 @login_required
 def user_logout(request):
 	logout(request)

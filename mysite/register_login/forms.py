@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
-from .models import Gamers
+# from .models import Gamers
 from django.contrib.auth import authenticate
 
 
@@ -11,7 +11,7 @@ class CreateUserForm(UserCreationForm):
 
 
     class Meta:
-        model = Gamers
+        model = User
         fields = ['username', 'email', 'password1', 'password2']
 
 
@@ -23,7 +23,7 @@ class CreateUserForm(UserCreationForm):
             'max_length': "Имя слишком длинное!",
         }
         self.fields['email'].error_messages = {
-            'required': "Введите адрес электронной почты.",
+            'required': "Введите адрес электронн`ой почты.",
             'invalid': "Введите корректный адрес электронной почты.",
             'unique': "Пользователь с таким адресом электронной почты уже существует.",
         }
@@ -58,7 +58,7 @@ class CreateUserForm(UserCreationForm):
         # if commit:
         #     user.save()
 
-        user = Gamers.objects.create_user(
+        user = User.objects.create_user(
             email=self.cleaned_data['email'],
             username=self.cleaned_data['username'],
             password=self.cleaned_data['password1']

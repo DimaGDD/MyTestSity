@@ -26,11 +26,11 @@ class CustomUserManager(BaseUserManager):
 	def generate_user_id(self):
 		while True:
 			user_id = get_random_string(length=6, allowed_chars='0123456789')
-			if not Gamers.objects.filter(id=user_id).exists():
+			if not User.objects.filter(id=user_id).exists():
 				return user_id
 
 
-class Gamers(AbstractBaseUser):
+class User(AbstractBaseUser):
 	id = models.CharField(max_length=6, primary_key=True, blank=False, unique=True)
 	username = models.CharField(max_length=50, blank=False)
 	email = models.EmailField(unique=True, blank=False)
