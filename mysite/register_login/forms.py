@@ -1,8 +1,7 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
-# from .models import Gamers
+from .models import User
 from django.contrib.auth import authenticate
 
 
@@ -23,13 +22,13 @@ class CreateUserForm(UserCreationForm):
             'max_length': "Имя слишком длинное!",
         }
         self.fields['email'].error_messages = {
-            'required': "Введите адрес электронн`ой почты.",
-            'invalid': "Введите корректный адрес электронной почты.",
-            'unique': "Пользователь с таким адресом электронной почты уже существует.",
+            'required': "Введите адрес электронной почты!",
+            'invalid': "Введите корректный адрес электронной почты!",
+            'unique': "Пользователь с таким адресом электронной почты уже существует!",
         }
         self.fields['password1'].error_messages = {
             'required': "Пароль обязателен!",
-            'min_length': "Пароль слишком короткий!",
+            'min_length': "Пароль слишком короткий. Он должен содержать не менее 8 символов!",
         }
         self.fields['password2'].error_messages = {
             'required': "Подтверждение пароля обязательно!",
@@ -40,8 +39,8 @@ class CreateUserForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if Gamers.objects.filter(email=email).exists():
-            raise forms.ValidationError('This email is already taken!')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(self.fields['email'].error_messages['unique'])
         return email
 
 

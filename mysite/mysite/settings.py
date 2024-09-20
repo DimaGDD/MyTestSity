@@ -129,3 +129,5 @@ AUTHENTICATION_BACKENDS = (
     'register_login.backends.GamersBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+AUTH_USER_MODEL = 'register_login.User'
