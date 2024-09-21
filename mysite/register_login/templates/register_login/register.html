@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация | GameVerse</title>
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'register_login/css/register.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -44,7 +46,7 @@
             <input type="submit" value="Регистрация">
         </form>
 
-        <p>Уже есть аккаунт? <a href="{% url 'sign_in' %}">Войдите здесь</a></p>
+        <p>Уже есть аккаунт? <a href="{% url 'sign_in' %}" style="text-decoration: none;">Войдите здесь</a></p>
     </div>
 
 </body>

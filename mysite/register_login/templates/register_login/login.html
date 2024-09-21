@@ -2,11 +2,13 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Вход | GameVerse</title>
+
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'register_login/css/register.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-	<title>Вход | GameVerse</title>
+	
 </head>
 <body>
 
@@ -36,7 +38,7 @@
 			<input type="submit" value="Login">
 		</form>
 
-		<p>Нет аккаунта? <a href="{% url 'sign_up' %}">Зарегистрируйтесь здесь</a></p>
+		<p>Нет аккаунта? <a href="{% url 'sign_up' %}" style="text-decoration: none;">Зарегистрируйтесь здесь</a></p>
 
 	</div>
 

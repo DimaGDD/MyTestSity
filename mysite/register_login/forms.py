@@ -17,6 +17,11 @@ class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['username'].label = 'Логин'
+        self.fields['email'].label = 'Email'
+        self.fields['password1'].label = 'Пароль'
+        self.fields['password2'].label = 'Подтверждение пароля'
+
         self.fields['username'].error_messages = {
             'required': "Обязательное поле!",
             'max_length': "Имя слишком длинное!",
@@ -67,8 +72,8 @@ class CreateUserForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.EmailField(widget=TextInput(), label='Email')
-    password = forms.CharField(widget=PasswordInput(), label='Password')
+    username = forms.EmailField(widget=TextInput())
+    password = forms.CharField(widget=PasswordInput())
 
 
     class Meta:
@@ -77,6 +82,9 @@ class LoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields['username'].label = 'Email'
+        self.fields['password'].label = 'Пароль'
 
         self.fields['username'].error_messages = {
             'required': 'Введите адрес электронной почты!',
