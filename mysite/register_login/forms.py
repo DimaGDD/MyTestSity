@@ -18,7 +18,7 @@ class CreateUserForm(UserCreationForm):
         super().__init__(*args, **kwargs)
 
         self.fields['username'].error_messages = {
-            'required': "Обязательное поле для заполнения!",
+            'required': "Обязательное поле!",
             'max_length': "Имя слишком длинное!",
         }
         self.fields['email'].error_messages = {
@@ -75,6 +75,18 @@ class LoginForm(AuthenticationForm):
         fields = ['username', 'password']
 
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].error_messages = {
+            'required': 'Введите адрес электронной почты!',
+            'invalid': "Введите корректный адрес электронной почты!",
+        }
+        self.fields['password'].error_messages = {
+            'required': "Введите пароль!",
+        }
+
+
     def clean(self):
         # cleaned_data = super().clean()
 
@@ -84,6 +96,6 @@ class LoginForm(AuthenticationForm):
         if email and password:
             user = authenticate(self.request, email=email, password=password)
             if user is None:
-                raise forms.ValidationError('Invalid Email or Password')
+                raise forms.ValidationError('Неверный Email или Пароль!')
 
         return self.cleaned_data

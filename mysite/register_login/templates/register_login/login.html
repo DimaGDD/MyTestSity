@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'register_login/css/register.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+	<title>Вход | GameVerse</title>
 </head>
 <body>
 
-	<form method="POST" autocomplete="off">
-		{% csrf_token %}
+	<div class="form-container">
 
-		<h2> Login here! </h2>
+		<form method="POST" autocomplete="off", novalidate>
+			{% csrf_token %}
 
-		<h4>{{ form.username.label }}</h4>
-		{{ form.username }}
-		<div class="error-message">{{ form.errors.username }}</div>
+			<h2> Login </h2>
 
-		<h4>{{ form.password.label }}</h4>
-		{{ form.password }}
-		<div class="error-message">{{ form.errors.password }}</div>
+			<h4>{{ form.username.label }}</h4>
+			{{ form.username }}
+			{% if form.errors.username %}
+				<div class="error-message">{{ form.errors.username }}</div>
+			{% endif %}
 
-		<input type="submit" value="Login">
-	</form>
+			<h4>{{ form.password.label }}</h4>
+			{{ form.password }}
+			{% if form.errors.password %}
+				<div class="error-message">{{ form.errors.password }}</div>
+			{% endif %}
 
-	<p>Нет аккаунта? <a href="{% url 'sign_up' %}">Зарегистрируйтесь здесь</a></p>
+			{% if form.non_field_errors %}
+			    <div class="error-message">{{ form.non_field_errors }}</div>
+			{% endif %}
+
+			<input type="submit" value="Login">
+		</form>
+
+		<p>Нет аккаунта? <a href="{% url 'sign_up' %}">Зарегистрируйтесь здесь</a></p>
+
+	</div>
 
 </body>
 </html>

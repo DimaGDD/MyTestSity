@@ -32,6 +32,18 @@ body, html {
     text-transform: uppercase;
 }
 
+/* Стили для ошибок формы */
+.error-message {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin: 10px 0; /* Увеличиваем верхний и нижний отступ */
+    border: 2px solid #ff4444; /* Увеличиваем ширину рамки */
+    border-radius: 5px; /* Добавляем закругление углов */
+    padding: 10px; /* Увеличиваем внутренние отступы */
+    background-color: rgba(255, 68, 68, 0.1);
+    animation: neonErrorPulse 1.5s infinite alternate;
+}
+
 /* Убираем маркеры перед ошибками */
 ul.errorlist {
     list-style-type: none;
@@ -147,5 +159,15 @@ body:after {
     100% {
         transform: scale(0.8);
         opacity: 0.7;
+    }
+}
+
+/* Эффект для ошибок */
+@keyframes neonErrorPulse {
+    0% {
+        box-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(255, 68, 68, 0.9);
     }
 }

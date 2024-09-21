@@ -19,19 +19,27 @@
 
             <h4>{{ form.username.label }}</h4>
             {{ form.username }}
-            <div class="error-message">{{ form.errors.username }}</div>
+            {% if form.errors.username %}
+                <div class="error-message">{{ form.errors.username }}</div>
+            {% endif %}
 
             <h4>{{ form.email.label }}</h4>
             {{ form.email }}
-            <div class="error-message">{{ form.errors.email }}</div>
+            {% if form.errors.email %}
+                <div class="error-message">{{ form.errors.email }}</div>
+            {% endif %}
 
             <h4>{{ form.password1.label }}</h4>
             {{ form.password1 }}
-            <div class="error-message">{{ form.errors.password1 }}</div>
+            {% if form.errors.password1 %}
+                <div class="error-message">{{ form.errors.password1 }}</div>
+            {% endif %}
 
             <h4>{{ form.password2.label }}</h4>
             {{ form.password2 }}
-            <div class="error-message">{{ form.errors.password2 }}</div>
+            {% if form.errors.password2 %}
+                <div class="error-message">{{ form.errors.password2 }}</div>
+            {% endif %}
 
             <input type="submit" value="Регистрация">
         </form>
