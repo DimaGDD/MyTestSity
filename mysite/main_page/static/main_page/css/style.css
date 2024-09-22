@@ -1,15 +1,19 @@
 /* Общие стили */
-body, html {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
     font-family: 'Orbitron', sans-serif;
     background: radial-gradient(circle, rgba(34,34,34,1) 0%, rgba(20,20,20,1) 100%);
-    height: 100%;
     color: #fff;
     overflow-x: hidden;
 }
 
-/* Шапка сайта */
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -18,79 +22,11 @@ header {
     background-color: rgba(0, 0, 0, 0.85);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
     border-bottom: 2px solid rgba(0, 255, 255, 0.4);
-}
-
-/* Убрали gap между кнопками */
-.auth-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Стили для кнопок авторизации */
-.register_button,
-.login_button {
-    background-color: #00ffff;
-    color: #111;
-    border: 2px solid #00ffff;
-    padding: 12px 20px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-    outline: none;
-    margin-left: 5px; /* Добавили отступ между кнопками */
-}
-
-.register_button:first-child {
-    margin-left: 0; /* Убираем отступ для первой кнопки */
-}
-
-.register_button:hover,
-.login_button:hover {
-    background-color: #ff00ff;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
-    transform: scale(1.05);
-}
-
-.register_button:focus,
-.login_button:focus {
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.8);
-}
-
-.register_button:active,
-.login_button:active {
-    background-color: #00cccc;
-    transform: scale(0.98);
-}
-
-/* Логотип */
-.logo {
-    font-size: 2rem;
-    color: #00ffff;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-}
-
-/* Иконка профиля */
-.profile-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #00ffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #111;
-    font-size: 20px;
-    cursor: pointer;
-    transition: opacity 0.3s; /* Эффект затухания */
-}
-
-.profile-icon:hover {
-    opacity: 0.7; /* При наведении */
+    z-index: 1100;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 /* Выпадающее меню */
@@ -131,31 +67,174 @@ header {
     background-color: rgba(255, 0, 0, 0.1); /* Эффект при наведении на выход */
 }
 
-/* Геро-секция */
+.auth-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.register_button,
+.login_button {
+    background-color: #00ffff;
+    color: #111;
+    border: 2px solid #00ffff;
+    padding: 12px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    outline: none;
+    margin-left: 5px;
+}
+
+.register_button:hover,
+.login_button:hover {
+    background-color: #ff00ff;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+    transform: scale(1.05);
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #00ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #111;
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s; /* Эффект затухания */
+}
+
+.profile-icon:hover {
+    opacity: 0.7; /* При наведении */
+}
+
+.logo {
+    font-size: 2rem;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 60px;
+    position: fixed;
+    top: 75px;
+    left: 0;
+    background-color: #111;
+    transition: width 0.3s ease;
+/*    display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.sidebar.expanded {
+    width: 220px;
+}
+
+.sidebar-button {
+    background-color: transparent;
+    justify-content: center;
+    border: none;
+    font-size: 30px;
+    color: white;
+    padding: 0 12px;
+    cursor: pointer;
+/*    margin: 20px;*/
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+.sidebar-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    height: 55px;
+    padding: 0 15px;
+    margin-left: 3px;
+/*    margin-top: 10px;*/
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 20%;
+}
+
+.sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.expanded .sidebar-button {
+    display: inline;
+    padding: 0 0;
+}
+
+.sidebar-item .icon {
+    font-size: 24px;
+    margin-right: 0;
+    transition: margin-right 0.3s ease;
+}
+
+.sidebar.expanded .sidebar-item{
+    border-radius: 5px;
+/*    justify-content: flex-start;*/
+/*    display: center;*/
+}
+
+.sidebar.expanded .sidebar-item .icon {
+    margin-right: 10px;
+}
+
+.sidebar-item .text {
+    display: none;
+    white-space: nowrap;
+}
+
+.sidebar.expanded .sidebar-item .text {
+    display: inline;
+}
+
+/* Main Content */
+.main-content {
+    transition: margin-left 0.3s ease;
+    margin-left: 60px;
+    padding-top: 75px; /* чтобы контент не перекрывался хедером */
+}
+
+.main-content.shifted {
+    margin-left: 220px;
+}
+
+/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,1)), url('/static/images/hero-bg.jpg') no-repeat center center/cover;
-}
-
-.hero-content {
-    color: #fff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), url('/static/images/hero-bg.jpg') no-repeat center center/cover;
 }
 
 .hero-content h1 {
     font-size: 4rem;
     color: #00ffff;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-}
-
-.hero-content p {
-    font-size: 1.5rem;
-    margin-top: 20px;
-    color: #ff00ff;
 }
 
 .hero-content button {
@@ -163,33 +242,9 @@ header {
     margin-top: 30px;
     background-color: #00ffff;
     border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: #111;
     cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
 }
 
 .hero-content button:hover {
     background-color: #ff00ff;
-}
-
-/* Секция Explore */
-.explore-section {
-    padding: 60px 0;
-    background-color: #111;
-    text-align: center;
-    color: #00ffff;
-}
-
-.explore-section h2 {
-    font-size: 2.5rem;
-    letter-spacing: 4px;
-}
-
-.explore-section p {
-    font-size: 1.2rem;
-    margin-top: 20px;
-    color: #ff00ff;
 }

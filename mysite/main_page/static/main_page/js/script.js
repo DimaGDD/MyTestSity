@@ -3,7 +3,14 @@ function toggleMenu() {
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
-// Закрытие меню при клике вне его
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.getElementById("main-content");
+
+    sidebar.classList.toggle("expanded");
+    mainContent.classList.toggle("shifted");
+}
+
 window.onclick = function(event) {
     if (!event.target.matches('.profile-icon')) {
         const menu = document.getElementById('profileMenu');
