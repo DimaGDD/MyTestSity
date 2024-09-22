@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Главная | GameVerse</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main_page/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Выйти</a>
-    {% else %}
-        <a href="{% url 'sign_in' %}">Войти</a>
-        <a href="{% url 'sign_up' %}">Зарегистрироваться</a>
-    {% endif %}
+
+    <header class="header">
+        <div class="logo">GamerVerse</div>
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <div class="profile-icon" onclick="toggleMenu()"></div>
+                <div class="dropdown-menu" id="profileMenu">
+                    <button class="menu-item" onclick="">Профиль</button>
+                    <button class="menu-item logout-button" onclick="window.location.href='{% url 'logout' %}'">Выйти</button>
+                </div>
+            {% else %}
+                <button onclick="window.location.href='{% url 'sign_in' %}'" class="register_button">Sign In</button>
+                <button onclick="window.location.href='{% url 'sign_up' %}'" class="login_button">Sign Up</button>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to GameVerse</h1>
+            <p>Your ultimate gaming platform for all things gaming.</p>
+            <button onclick="window.location.href='#explore'">Explore</button>
+        </div>
+    </section>
+
+    <section id="explore" class="explore-section">
+        <h2>Explore Our World</h2>
+        <p>Join a community of gamers, explore new worlds, and participate in exclusive events.</p>
+    </section>
+
+    <script src="{% static 'main_page/js/scripts.js' %}"></script>
 </body>
 </html>
