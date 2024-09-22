@@ -195,8 +195,7 @@ header {
 
 .sidebar.expanded .sidebar-item{
     border-radius: 5px;
-/*    justify-content: flex-start;*/
-/*    display: center;*/
+    margin-left: 10px;
 }
 
 .sidebar.expanded .sidebar-item .icon {
