@@ -17,7 +17,7 @@
             {% if user.is_authenticated %}
                 <div class="profile-icon" onclick="toggleMenu()"></div>
                 <div class="dropdown-menu" id="profileMenu">
-                    <button class="menu-item" onclick="">Профиль</button>
+                    <button class="menu-item" onclick="window.location.href='{% url 'profile_page' %}'">Профиль</button>
                     <button class="menu-item logout-button" onclick="window.location.href='{% url 'logout' %}'">Выйти</button>
                 </div>
             {% else %}

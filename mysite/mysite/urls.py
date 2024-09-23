@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('register_login.urls')),
     path('homepage/', include('main_page.urls')),
+    path('profile_settings/', include('profile_page.urls')),
 
     path('', lambda request: redirect('home_page', permanent=True)),
 

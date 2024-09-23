@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="avatar-section">
+            {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
+            {% else %}
+                <div class="avatar-placeholder">Нет аватара</div>
+            {% endif %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Загрузить аватар</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
