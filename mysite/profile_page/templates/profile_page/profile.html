@@ -28,23 +28,37 @@
             {% csrf_token %}
 
             <div class="avatar-container">
-                <label for="avatar-upload">
-                    {% if user.avatar %}
-                        <div class="avatar-wrapper">
-                            <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
+                {% if user.avatar %}
+                    <div class="avatar-wrapper">
+                        <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
+                        <div class="edit-area" onclick="document.getElementById('avatar-upload-left').click();">
+                            <div class="edit-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
                         </div>
-                    {% else %}
-                        <div class="avatar-placeholder"></div>
-                    {% endif %}
-                    <div class="edit-icon">
-                        <i class="fas fa-pencil-alt"></i>
+                        <input type="file" id="avatar-upload-left" name="avatar" accept="image/*" style="display: none;" onchange="this.form.submit();">
+                        <div class="delete-area" onclick="document.querySelector('input[name=\'delete_avatar\']').click();">
+                            <div class="delete-icon">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <input type="submit" name="delete_avatar" style="display: none;">
                     </div>
-                </label>
-                <input type="file" id="avatar-upload" name="avatar" accept="image/*" style="display: none;" onchange="this.form.submit();">
+                {% else %}
+                    <label for="avatar-upload">
+                        <div class="avatar-placeholder">
+                            <div class="edit-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                        </div>
+                    </label>
+                    <input type="file" id="avatar-upload" name="avatar" accept="image/*" style="display: none;" onchange="this.form.submit();">
+                {% endif %}
             </div>
-            {% if user.avatar %}
-            <!-- Кнопка для удаления аватара -->
-            <button type="submit" name="delete_avatar" class="delete-avatar-button">Удалить аватар</button>
+            {% if error_message %}
+                <div>
+                    <div class="error-message">{{ error_message }}</div>
+                </div>
             {% endif %}
 
         </form>
@@ -53,7 +67,7 @@
 
 
 
-    <script src="{% static 'main_page/js/script.js' %}"></script>
+    <!-- <script src="{% static 'main_page/js/script.js' %}"></script> -->
     <script src="{% static 'profile_page/js/script.js' %}"></script>
 </body>
 </html>
