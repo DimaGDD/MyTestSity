@@ -15,7 +15,13 @@
         <div class="logo">GamerVerse</div>
         <div class="auth-buttons">
             {% if user.is_authenticated %}
-                <div class="profile-icon" onclick="toggleMenu()"></div>
+                <div class="profile-icon" onclick="toggleMenu()">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
+                    {% else %}
+                        <div class="avatar-placeholder"></div>
+                    {% endif %}
+                </div>
                 <div class="dropdown-menu" id="profileMenu">
                     <button class="menu-item" onclick="window.location.href='{% url 'profile_page' %}'">Профиль</button>
                     <button class="menu-item logout-button" onclick="window.location.href='{% url 'logout' %}'">Выйти</button>

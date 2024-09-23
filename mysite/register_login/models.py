@@ -37,6 +37,10 @@ class CustomUserManager(BaseUserManager):
                     return user_id
 
 
+def user_avatar_path(instance, filename):
+    return f'{instance.email}/avatar/{filename}'
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, blank=False)
     email = models.EmailField(unique=True, blank=False)
@@ -44,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
 
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    avatar = models.ImageField(upload_to=user_avatar_path, blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

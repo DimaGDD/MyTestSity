@@ -19,6 +19,9 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from register_login import views as auth_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('register_login.urls')),
@@ -29,4 +32,4 @@ urlpatterns = [
 
     path('login/', auth_views.sign_in, name='login'),
     path('logout/', auth_views.user_logout, name='logout'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

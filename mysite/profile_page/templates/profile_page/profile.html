@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
+    <title>Профиль | GameVerse</title>
     
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    {% load custom_filters %}
+
+    <link rel="stylesheet" href="{% static 'main_page/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'profile_page/css/profile.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="profile-container">
-        <div class="avatar-section">
-            {% if user.avatar %}
-                <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
-            {% else %}
-                <div class="avatar-placeholder">Нет аватара</div>
-            {% endif %}
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Загрузить аватар</button>
-            </form>
+
+    <header class="header">
+        <div class="logo">GameVerse</div>
+        <div class="auth-buttons">
+            <button class="back-button" onclick="window.location.href='{% url 'home_page' %}'">Вернуться на главную</button>
         </div>
+    </header>
+
+
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="avatar-container">
+                <label for="avatar-upload">
+                    {% if user.avatar %}
+                        <div class="avatar-wrapper">
+                            <img src="{{ user.avatar.url }}" alt="User Avatar" class="avatar">
+                        </div>
+                    {% else %}
+                        <div class="avatar-placeholder"></div>
+                    {% endif %}
+                    <div class="edit-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                </label>
+                <input type="file" id="avatar-upload" name="avatar" accept="image/*" style="display: none;" onchange="this.form.submit();">
+            </div>
+            {% if user.avatar %}
+            <!-- Кнопка для удаления аватара -->
+            <button type="submit" name="delete_avatar" class="delete-avatar-button">Удалить аватар</button>
+            {% endif %}
+
+        </form>
     </div>
+
+
+
+
+    <script src="{% static 'main_page/js/script.js' %}"></script>
+    <script src="{% static 'profile_page/js/script.js' %}"></script>
 </body>
 </html>

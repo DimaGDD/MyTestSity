@@ -11,9 +11,19 @@ def profile_page(request):
     form = AvatarUploadForm(instance=request.user)
 
     if request.method == 'POST':
-        form = AvatarUploadForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
+        if 'avatar' in request.FILES:
+            avatar_form = AvatarUploadForm(request.POST, request.FILES, instance=request.user)
+
+            old_avatar = request.user.avatar
+            old_avatar.delete()
+    
+            if avatar_form.is_valid():
+                avatar_form.save()
+                return redirect('profile_page')
+
+        elif 'delete_avatar' in request.POST:
+            if request.user.avatar:
+                request.user.avatar.delete()
             return redirect('profile_page')
     
     return render(request, 'profile_page/profile.html', {'form': form, 'user': request.user})
